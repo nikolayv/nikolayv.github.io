@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtable Search</title>
+</head>
+<body>
+    <input type="text" id="search-input" placeholder="Type to search..." oninput="updateIframeSrc()">
+
+    <iframe id="airtable-iframe" src="https://airtable.com/embed/appwWZMDVwaFP8jJ9/shrCits3mPhDtU83x?backgroundColor=purple&viewControls=on" width="100%" height="633" frameborder="0" onmousewheel=""></iframe>
+
+    <script>
+        function updateIframeSrc() {
+            const query = document.getElementById('search-input').value;
+            const iframe = document.getElementById('airtable-iframe');
+
+            const url = ("https://airtable.com/embed/appwWZMDVwaFP8jJ9/shrCits3mPhDtU83x?backgroundColor=purple&viewControls=on&filterContains_Test%20Run=" +
+              encodeURIComponent(query));
+            // Replace 'QUERY_HERE' in the original URL with the user's input
+            //const updatedURL = iframe.src.replace('QUERY_HERE', encodeURIComponent(query));
+          //console.log(updatedURL);
+            iframe.src = url;
+        }
+    </script>
+</body>
+</html>
