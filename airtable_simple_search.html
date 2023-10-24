@@ -21,6 +21,7 @@
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(func, delay);
         }
+
         function updateIframeSrc() {
             console.log("called and updating");
             const query = document.getElementById('search-input').value;
@@ -30,6 +31,18 @@
               encodeURIComponent(query));
             iframe.src = url;
         }
+
+        // Intercept Cmd/Ctrl + F
+        document.addEventListener('keydown', function(event) {
+            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+            const keyF = 70;
+            const cmdKey = isMac ? event.metaKey : event.ctrlKey;
+
+            if (cmdKey && event.keyCode === keyF) {
+                event.preventDefault(); 
+                document.getElementById('search-input').focus();
+            }
+        });
     </script>
 </body>
 </html>
